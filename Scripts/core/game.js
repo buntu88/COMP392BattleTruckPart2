@@ -59,7 +59,7 @@ var manifest = [
     { id: "menu", src: "../../Assets/audio/menu.mp3" },
     { id: "instruction", src: "../../Assets/audio/instructions.mp3" },
     { id: "CompanyLogo", src: "../../Assets/images/CompanyLogo.png" },
-    { id: "InstructionPanel", src: "../../Assets/images/StartButton.png" },
+    { id: "InstructionPanel", src: "../../Assets/images/InstructionLabel.png" },
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "PlayAgainButton", src: "../../Assets/images/PlayAgainButton.png" },
