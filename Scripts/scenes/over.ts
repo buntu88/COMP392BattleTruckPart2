@@ -58,7 +58,7 @@ module scenes {
         private _setupCanvas(): void {
             canvas.style.width = "100%";
             canvas.setAttribute("height", config.Screen.HEIGHT.toString());
-            canvas.style.backgroundColor = "#ffffff";
+            canvas.style.backgroundColor = "#000000";
             canvas.style.opacity = "0.8";
             canvas.style.position = "absolute";
         }
@@ -142,47 +142,47 @@ module scenes {
             console.log("Added Ground to scene");
         }
         
-        /**
-         * This method adds a coin to the scene
-         * 
-         * @method addCoinMesh
-         * @return void
-         */
-        private addCoinMesh(): void {
-            var self = this;
+        // /**
+        //  * This method adds a coin to the scene
+        //  * 
+        //  * @method addCoinMesh
+        //  * @return void
+        //  */
+        // private addCoinMesh(): void {
+        //     var self = this;
 
-            this.coins = new Array<Physijs.ConvexMesh>(); // Instantiate a convex mesh array
+        //     this.coins = new Array<Physijs.ConvexMesh>(); // Instantiate a convex mesh array
 
-            var coinLoader = new THREE.JSONLoader().load("../../Assets/imported/coin.json", function(geometry: THREE.Geometry) {
-                var phongMaterial = new PhongMaterial({ color: 0xE7AB32 });
-                phongMaterial.emissive = new THREE.Color(0xE7AB32);
+        //     var coinLoader = new THREE.JSONLoader().load("../../Assets/imported/coin.json", function(geometry: THREE.Geometry) {
+        //         var phongMaterial = new PhongMaterial({ color: 0xE7AB32 });
+        //         phongMaterial.emissive = new THREE.Color(0xE7AB32);
 
-                var coinMaterial = Physijs.createMaterial((phongMaterial), 0.4, 0.6);
+        //         var coinMaterial = Physijs.createMaterial((phongMaterial), 0.4, 0.6);
 
-                for (var count: number = 0; count < self.coinCount; count++) {
-                    self.coins[count] = new Physijs.ConvexMesh(geometry, coinMaterial);
-                    self.coins[count].receiveShadow = true;
-                    self.coins[count].castShadow = true;
-                    self.coins[count].name = "Coin";
-                    self.setCoinPosition(self.coins[count]);
-                    console.log("Added Coin " + count + " to the Scene");
-                }
-            });
-        }
+        //         for (var count: number = 0; count < self.coinCount; count++) {
+        //             self.coins[count] = new Physijs.ConvexMesh(geometry, coinMaterial);
+        //             self.coins[count].receiveShadow = true;
+        //             self.coins[count].castShadow = true;
+        //             self.coins[count].name = "Coin";
+        //             self.setCoinPosition(self.coins[count]);
+        //             console.log("Added Coin " + count + " to the Scene");
+        //         }
+        //     });
+        // }
         
-        /**
-         * This method randomly sets the coin object's position
-         * 
-         * @method setCoinPosition
-         * @return void
-         */
-        private setCoinPosition(coin: Physijs.ConvexMesh): void {
-            var randomPointX: number = Math.floor(Math.random() * 20) - 10;
-            var randomPointY: number = Math.floor(Math.random() * 30) + 1;
-            var randomPointZ: number = Math.floor(Math.random() * 20) - 10;
-            coin.position.set(randomPointX, randomPointY, randomPointZ);
-            this.add(coin);
-        }
+        // /**
+        //  * This method randomly sets the coin object's position
+        //  * 
+        //  * @method setCoinPosition
+        //  * @return void
+        //  */
+        // private setCoinPosition(coin: Physijs.ConvexMesh): void {
+        //     var randomPointX: number = Math.floor(Math.random() * 20) - 10;
+        //     var randomPointY: number = Math.floor(Math.random() * 30) + 1;
+        //     var randomPointZ: number = Math.floor(Math.random() * 20) - 10;
+        //     coin.position.set(randomPointX, randomPointY, randomPointZ);
+        //     this.add(coin);
+        // }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++
 
@@ -199,6 +199,9 @@ module scenes {
             this.setGravity(new THREE.Vector3(0, -10, 0));
             var self = this;
             
+                        createjs.Sound.stop();
+            createjs.Sound.play("gameOver");
+            
             //check for high score changes
             if(scoreValue > highScoreValue) {
                 highScoreValue = scoreValue;
@@ -206,8 +209,8 @@ module scenes {
             
             this._gameOverLabel = new createjs.Text(
                 "GAME OVER",
-                "80px Consolas",
-                "#000000");
+                "80px Algerian",
+                "#ffffff");
             this._gameOverLabel.regX = this._gameOverLabel.getMeasuredWidth() * 0.5;
             this._gameOverLabel.regY = this._gameOverLabel.getMeasuredLineHeight() * 0.5;
             this._gameOverLabel.x = config.Screen.WIDTH * 0.5;
@@ -216,8 +219,8 @@ module scenes {
             
             this._scoreLabel = new createjs.Text(
                 "Your Score: " + scoreValue,
-                "40px Consolas",
-                "#000000");
+                "40px Algerian",
+                "#ffffff");
             this._scoreLabel.regX = this._scoreLabel.getMeasuredWidth() * 0.5;
             this._scoreLabel.regY = this._scoreLabel.getMeasuredLineHeight() * 0.5;
             this._scoreLabel.x = config.Screen.WIDTH * 0.5;
@@ -226,8 +229,8 @@ module scenes {
             
             this._highScoreLabel = new createjs.Text(
                 "High Score: " + highScoreValue,
-                "40px Consolas",
-                "#000000");
+                "40px Algerian",
+                "#ffffff");
             this._highScoreLabel.regX = this._highScoreLabel.getMeasuredWidth() * 0.5;
             this._highScoreLabel.regY = this._highScoreLabel.getMeasuredLineHeight() * 0.5;
             this._highScoreLabel.x = config.Screen.WIDTH * 0.5;
@@ -260,18 +263,18 @@ module scenes {
             // Ground Object
             this.addGround();
             
-            // Add custom coin imported from Blender
-            this.addCoinMesh();
+            // // // Add custom coin imported from Blender
+            // // this.addCoinMesh();
             
-            this.ground.addEventListener('collision', function(eventObject){
-                if (eventObject.name === "Coin") {
-                    var coinSound: createjs.AbstractSoundInstance = createjs.Sound.play("coin");
-                    coinSound.volume = 0.1;
+            // this.ground.addEventListener('collision', function(eventObject){
+            //     if (eventObject.name === "Coin") {
+            //         var coinSound: createjs.AbstractSoundInstance = createjs.Sound.play("coin");
+            //         coinSound.volume = 0.1;
                     
-                    self.remove(eventObject);
-                    self.setCoinPosition(eventObject);
-                }
-            });
+            //         self.remove(eventObject);
+            //         self.setCoinPosition(eventObject);
+            //     }
+            // });
             
             camera.position.set(0, 10, -20);
             camera.lookAt(new Vector3(0, 0, 0));  
@@ -284,10 +287,10 @@ module scenes {
          * @return void
          */
         public update(): void {
-             this.coins.forEach(coin => {
-                coin.setAngularFactor(new Vector3(0, 0, 0));
-                coin.setAngularVelocity(new Vector3(0, 1, 0));
-            });
+            //  this.coins.forEach(coin => {
+            //     coin.setAngularFactor(new Vector3(0, 0, 0));
+            //     coin.setAngularVelocity(new Vector3(0, 1, 0));
+            // });
             
             this._stage.update();
             

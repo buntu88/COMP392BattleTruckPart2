@@ -66,6 +66,7 @@ var manifest = [
     { id: "jump", src: "../../Assets/audio/Jump.wav" },
     { id: "menu", src: "../../Assets/audio/menu.mp3" },
     { id: "instruction", src: "../../Assets/audio/instructions.mp3" },
+    { id: "gameOver", src: "../../Assets/audio/gameOver.mp3" },
     { id: "CompanyLogo", src: "../../Assets/images/CompanyLogo.png" },
     { id: "InstructionPanel", src: "../../Assets/images/InstructionLabel.png" },
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
