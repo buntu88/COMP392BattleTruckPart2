@@ -1,0 +1,28 @@
+{
+  "name": "Battle Truck - Part2",
+  "authors": [
+    "Vishal Guleria (300813391), Vinay Bhardwaj (300825097) and Jagpreet Jattana"
+  ],
+  "description": "COMP392 Group Project Battle Truck - Part 2",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://github.com/buntu88/COMP392BattleTruckPart2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Scripts/lib"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*",
+    "stats.js": "*",
+    "Physijs": "physijs#*",
+    "EaselJS": "^0.8.2",
+    "TweenJS": "^0.6.2",
+    "SoundJS": "^0.6.2",
+    "PreloadJS": "^0.6.2"
+  }
+}
