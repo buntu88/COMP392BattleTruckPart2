@@ -1,18 +1,18 @@
-/**
- * The Scenes module is a namespace to reference all scene objects
- *
- * @module scenes
- */
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 //File name:            Play1
 //Author’s name:        Vishal Guleria (300813391), Vinay Bhardwaj (300825097) and Jagpreet Jattana
 //Date last Modified    April 8,2016
 //Program description   Group Project - Battle Truck
 //Revision History      Part 2
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+/**
+ * The Scenes module is a namespace to reference all scene objects
+ *
+ * @module scenes
+ */
 var scenes;
 (function (scenes) {
     /**
@@ -446,16 +446,6 @@ var scenes;
          * @return void
          */
         Play1.prototype.addPlayer = function () {
-            // Player Object
-            // this.playerGeometry = new BoxGeometry(2, 4, 2);
-            // this.playerMaterial = Physijs.createMaterial(new LambertMaterial({ color: 0x00ff00 }), 0.4, 0);
-            // this.player = new Physijs.BoxMesh(this.playerGeometry, this.playerMaterial, 1);
-            // this.player.position.set(0, 10, 10);
-            // this.player.receiveShadow = true;
-            // this.player.castShadow = true;
-            // this.player.name = "Player";
-            // this.add(this.player);
-            // console.log("Added Player to Scene");
             // Truck Body Object
             this.bodyTexture = new THREE.TextureLoader().load('../../Assets/images/Body.jpg');
             this.bodyTexture.wrapS = THREE.RepeatWrapping;
@@ -593,29 +583,6 @@ var scenes;
             this.add(this.deathPlane);
         };
         /**
-         * This method adds a coin to the scene
-         *
-         * @method addCoinMesh
-         * @return void
-         */
-        // private addCoinMesh(): void {
-        //     var self = this;
-        //     this.coins = new Array<Physijs.ConvexMesh>(); // Instantiate a convex mesh array
-        //     var coinLoader = new THREE.JSONLoader().load("../../Assets/imported/coin.json", function(geometry: THREE.Geometry) {
-        //         var phongMaterial = new PhongMaterial({ color: 0xE7AB32 });
-        //         phongMaterial.emissive = new THREE.Color(0xE7AB32);
-        //         var coinMaterial = Physijs.createMaterial((phongMaterial), 0.4, 0.6);
-        //         for (var count: number = 0; count < self.coinCount; count++) {
-        //             self.coins[count] = new Physijs.ConvexMesh(geometry, coinMaterial);
-        //             self.coins[count].receiveShadow = true;
-        //             self.coins[count].castShadow = true;
-        //             self.coins[count].name = "Coin";
-        //             self.setCoinPosition(self.coins[count]);
-        //             console.log("Added Coin " + count + " to the Scene");
-        //         }
-        //     });
-        // }
-        /**
          * This method randomly sets the coin object's position
          *
          * @method setCoinPosition
@@ -724,18 +691,6 @@ var scenes;
                 this.player.setAngularVelocity(new Vector3(0, 0, 0));
             }
         };
-        /**
-         * Have the enemy look at the player
-         *
-         * @method enemyLook
-         * @remove void
-         */
-        // private enemyMoveAndLook(): void {
-        //     this.enemy.lookAt(this.player.position);
-        //     var direction = new Vector3(0, 0, 5);
-        //     direction.applyQuaternion(this.enemy.quaternion);
-        //     this.enemy.applyCentralForce(direction);
-        // }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++
         /**
          * The start method is the main method for the scene class
@@ -779,8 +734,6 @@ var scenes;
             this.addSpotLight();
             // Ground Object
             this.addGround();
-            // Add Enemy Object
-            //this.addEnemy();
             // Add player controller
             this.addPlayer();
             // Add custom coin imported from Blender
@@ -865,26 +818,6 @@ var scenes;
                         self.add(self.player);
                     }
                 }
-                if (eventObject.name === "Enemy") {
-                    var enemySound = createjs.Sound.play("enemy");
-                    enemySound.volume = 0.1;
-                }
-            }.bind(self));
-            // Collision check for DeathPlane
-            this.deathPlane.addEventListener('collision', function (otherObject) {
-                // if a coin falls off the ground, reset
-                if (otherObject.name === "Coin") {
-                    this.remove(otherObject);
-                    this.setCoinPosition(otherObject);
-                }
-                // if the enemy falls off the ground, reset
-                // if (otherObject.name === "Enemy") {
-                //     self.remove(otherObject);
-                //     self.enemy.position.set(0, 60, -10);
-                //     self.add(self.enemy);
-                //     self.enemy.setLinearVelocity(new Vector3(0, 0, 0));
-                //     self.enemyMoveAndLook();
-                // }
             }.bind(self));
             // create parent-child relationship with camera and player
             this.player.add(camera);
@@ -911,12 +844,7 @@ var scenes;
          * @returns void
          */
         Play1.prototype.update = function () {
-            // this.coins.forEach(coin => {
-            //     coin.setAngularFactor(new Vector3(0, 0, 0));
-            //     coin.setAngularVelocity(new Vector3(0, 1, 0));
-            // });
             this.checkControls();
-            //this.enemyMoveAndLook();
             this.stage.update();
             if (!this.keyboardControls.paused) {
                 this.simulate();

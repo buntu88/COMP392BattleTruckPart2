@@ -1,14 +1,14 @@
-/**
- * The Scenes module is a namespace to reference all scene objects
- * 
- * @module scenes
- */
-
 //File name:            Play1
 //Author’s name:        Vishal Guleria (300813391), Vinay Bhardwaj (300825097) and Jagpreet Jattana
 //Date last Modified    April 8,2016
 //Program description   Group Project - Battle Truck
 //Revision History      Part 2
+
+/**
+ * The Scenes module is a namespace to reference all scene objects
+ * 
+ * @module scenes
+ */
 
 module scenes {
     /**
@@ -161,10 +161,6 @@ module scenes {
         private enemyGeometry: SphereGeometry;
         private enemyMaterial: Physijs.Material;
         private enemy: Physijs.Mesh;
-
-        // private playerGeometry: CubeGeometry;
-        // private playerMaterial: Physijs.Material;
-        // private player: Physijs.Mesh;
 
         private keyboardControls: objects.KeyboardControls;
         private mouseControls: objects.MouseControls;
@@ -688,17 +684,6 @@ module scenes {
          * @return void
          */
         private addPlayer(): void {
-            // Player Object
-            // this.playerGeometry = new BoxGeometry(2, 4, 2);
-            // this.playerMaterial = Physijs.createMaterial(new LambertMaterial({ color: 0x00ff00 }), 0.4, 0);
-
-            // this.player = new Physijs.BoxMesh(this.playerGeometry, this.playerMaterial, 1);
-            // this.player.position.set(0, 10, 10);
-            // this.player.receiveShadow = true;
-            // this.player.castShadow = true;
-            // this.player.name = "Player";
-            // this.add(this.player);
-            // console.log("Added Player to Scene");
 
             // Truck Body Object
             this.bodyTexture = new THREE.TextureLoader().load('../../Assets/images/Body.jpg');
@@ -1141,20 +1126,6 @@ module scenes {
                     }
                 }
 
-                if (eventObject.name === "Enemy") {
-                    var enemySound = createjs.Sound.play("enemy");
-                    enemySound.volume = 0.1;
-                }
-            }.bind(self));
-
-            // Collision check for DeathPlane
-            this.deathPlane.addEventListener('collision', function(otherObject) {
-
-                // if a coin falls off the ground, reset
-                if (otherObject.name === "Coin") {
-                    this.remove(otherObject);
-                    this.setCoinPosition(otherObject);
-                }
 
             }.bind(self));
 
@@ -1192,8 +1163,6 @@ module scenes {
 
 
             this.checkControls();
-
-            //this.enemyMoveAndLook();
 
             this.stage.update();
 
