@@ -861,33 +861,6 @@ module scenes {
             this.add(this.deathPlane);
         }
 
-        /**
-         * This method adds a coin to the scene
-         * 
-         * @method addCoinMesh
-         * @return void
-         */
-        // private addCoinMesh(): void {
-        //     var self = this;
-
-        //     this.coins = new Array<Physijs.ConvexMesh>(); // Instantiate a convex mesh array
-
-        //     var coinLoader = new THREE.JSONLoader().load("../../Assets/imported/coin.json", function(geometry: THREE.Geometry) {
-        //         var phongMaterial = new PhongMaterial({ color: 0xE7AB32 });
-        //         phongMaterial.emissive = new THREE.Color(0xE7AB32);
-
-        //         var coinMaterial = Physijs.createMaterial((phongMaterial), 0.4, 0.6);
-
-        //         for (var count: number = 0; count < self.coinCount; count++) {
-        //             self.coins[count] = new Physijs.ConvexMesh(geometry, coinMaterial);
-        //             self.coins[count].receiveShadow = true;
-        //             self.coins[count].castShadow = true;
-        //             self.coins[count].name = "Coin";
-        //             self.setCoinPosition(self.coins[count]);
-        //             console.log("Added Coin " + count + " to the Scene");
-        //         }
-        //     });
-        // }
 
         /**
          * This method randomly sets the coin object's position
@@ -1010,18 +983,6 @@ module scenes {
             }
         }
 
-        /**
-         * Have the enemy look at the player
-         * 
-         * @method enemyLook
-         * @remove void
-         */
-        // private enemyMoveAndLook(): void {
-        //     this.enemy.lookAt(this.player.position);
-        //     var direction = new Vector3(0, 0, 5);
-        //     direction.applyQuaternion(this.enemy.quaternion);
-        //     this.enemy.applyCentralForce(direction);
-        // }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++
 
@@ -1077,9 +1038,6 @@ module scenes {
 
             // Ground Object
             this.addGround();
-
-            // Add Enemy Object
-            //this.addEnemy();
 
             // Add player controller
             this.addPlayer();
@@ -1198,14 +1156,6 @@ module scenes {
                     this.setCoinPosition(otherObject);
                 }
 
-                // if the enemy falls off the ground, reset
-                // if (otherObject.name === "Enemy") {
-                //     self.remove(otherObject);
-                //     self.enemy.position.set(0, 60, -10);
-                //     self.add(self.enemy);
-                //     self.enemy.setLinearVelocity(new Vector3(0, 0, 0));
-                //     self.enemyMoveAndLook();
-                // }
             }.bind(self));
 
             // create parent-child relationship with camera and player
@@ -1240,10 +1190,6 @@ module scenes {
          */
         public update(): void {
 
-            // this.coins.forEach(coin => {
-            //     coin.setAngularFactor(new Vector3(0, 0, 0));
-            //     coin.setAngularVelocity(new Vector3(0, 1, 0));
-            // });
 
             this.checkControls();
 
